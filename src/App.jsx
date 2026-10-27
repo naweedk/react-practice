@@ -6,10 +6,18 @@ import Footer from "./Footer";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [search, setSearch] = useState("");
+  const skills = ["HTML", "CSS", "JavaScript", "React", "Node.js", "Express", "MongoDB", "Next.js", "TypeScript", "Git", "RESTful APIs", "Responsive Design", "UI/UX Design"];
+  const filterSkills = (skill) =>
+    skill.toLowerCase().includes(search.toLowerCase());
+  const uppercaseSkill = (skill) => skill.toUpperCase();
+
+  const filteredSkills = skills.filter(filterSkills);
+
+  const handleReset = () => setSearch("");
 
   const name = "Naweed Khan";
   const role = "Front-End Developer";
-  const skills = ["HTML", "CSS", "JavaScript", "React", "Node.js", "Express", "MongoDB", "Next.js", "TypeScript", "Git", "RESTful APIs", "Responsive Design", "UI/UX Design"];
 
   let experience = 1;
   experience = experience + 1;
@@ -58,11 +66,35 @@ function App() {
 
         <ul className="skills-list">
           {skills.map((skill) => (
-            <li key={skill}>{skill}</li>
+            <li key={skill}>{uppercaseSkill(skill)}</li>
           ))}
         </ul>
       </section>
 
+
+      <section className="skills-explorer" id="skills">
+        <h1>Skills Explorer</h1>
+        <p>Search the technologies I'm learning.</p>
+
+        <input
+          type="text"
+          placeholder="Search skills..."
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+        />
+
+        <button onClick={handleReset}>Reset Search</button>
+
+        <ul className="skills-list">
+          {filteredSkills.map((skill) => (
+            <li key={skill}>{uppercaseSkill(skill)}</li>
+          ))}
+        </ul>
+
+        {filteredSkills.length === 0 && (
+          <p>No matching skills found.</p>
+        )}
+      </section>
 
       <Footer />
     </div>

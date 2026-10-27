@@ -191,3 +191,55 @@ main button + button {
   }
 }
 
+
+/* Skills Explorer */
+.skills-explorer {
+  width: min(90%, 760px);
+  margin: 0 auto 60px;
+  padding: 36px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+  text-align: center;
+}
+
+.skills-explorer h1 {
+  margin-top: 0;
+  font-size: 30px;
+}
+
+.skills-explorer input {
+  width: min(100%, 420px);
+  padding: 12px 16px;
+  margin: 12px 8px 20px 0;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font: inherit;
+  outline: none;
+}
+
+.skills-explorer input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.skills-explorer button {
+  margin-bottom: 20px;
+}
+
+.skills-explorer .skills-list {
+  margin-top: 12px;
+}
+
+@media (max-width: 600px) {
+  .skills-explorer {
+    width: calc(100% - 32px);
+    padding: 24px 18px;
+  }
+
+  .skills-explorer input {
+    width: 100%;
+    margin-right: 0;
+  }
+}
