@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import "./App.css";
+import UserCard from "./UserCard";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
@@ -94,6 +95,31 @@ function App() {
         {filteredSkills.length === 0 && (
           <p>No matching skills found.</p>
         )}
+      </section>
+
+      <section className="team-section">
+        <h2>Our Team</h2>
+
+        <UserCard
+          name="Naweed Khan"
+          role="Frontend Developer"
+          experience={1}
+          city="Mumbai"
+        />
+
+        <UserCard
+          name="Rahul Sharma"
+          role="Backend Developer"
+          experience={3}
+          city="Pune"
+        />
+
+        <UserCard
+          name="Aman Verma"
+          role="Full Stack Developer"
+          experience={2}
+          city="Bangalore"
+        />
       </section>
 
       <Footer />
