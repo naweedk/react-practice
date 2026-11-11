@@ -20,6 +20,30 @@ function App() {
   const name = "Naweed Khan";
   const role = "Front-End Developer";
 
+  const teamMembers = [
+  {
+    id: 1,
+    name: "Naweed Khan",
+    role: "Frontend Developer",
+    experience: 3,
+    city: "Mumbai",
+  },
+  {
+    id: 2,
+    name: "Rahul Sharma",
+    role: "Backend Developer",
+    experience: 3,
+    city: "Pune",
+  },
+  {
+    id: 3,
+    name: "Aman Verma",
+    role: "Full Stack Developer",
+    experience: 2,
+    city: "Bangalore",
+  },
+];
+
   let experience = 1;
   experience = experience + 1;
 
@@ -98,29 +122,15 @@ function App() {
       </section>
 
       <section className="team-section">
-        <h2>Our Team</h2>
+  <h2>Our Team</h2>
 
-        <UserCard
-          name="Naweed Khan"
-          role="Frontend Developer"
-          experience={1}
-          city="Mumbai"
-        />
-
-        <UserCard
-          name="Rahul Sharma"
-          role="Backend Developer"
-          experience={3}
-          city="Pune"
-        />
-
-        <UserCard
-          name="Aman Verma"
-          role="Full Stack Developer"
-          experience={2}
-          city="Bangalore"
-        />
-      </section>
+  {teamMembers.map((member) => (
+    <UserCard
+      key={member.id}
+      {...member}
+    />
+  ))}
+</section>
 
       <Footer />
     </div>

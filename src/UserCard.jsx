@@ -1,13 +1,16 @@
-function UserCard(props) {
+
+function UserCard({
+  name = "Unknown",
+  role = "Not specified",
+  experience = 0,
+  city = "Not available",
+}) {
   return (
     <div className="user-card">
-      <h2>{props.name}</h2>
-
-      <p>{props.role}</p>
-
-      <p>Experience: {props.experience} years</p>
-
-      <p>Location: {props.city}</p>
+      <h2>{name}</h2>
+      <p>{role}</p>
+      <p>Experience: {experience} years</p>
+      <p>Location: {city}</p>
     </div>
   );
 }
