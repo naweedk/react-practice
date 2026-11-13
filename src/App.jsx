@@ -1,73 +1,184 @@
 
 import { useState } from "react";
 import "./App.css";
+
 import UserCard from "./UserCard";
 import Card from "./Card";
+import ActionButton from "./ActionButton";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
 function App() {
+  // Counter State
   const [count, setCount] = useState(0);
+
+  // Skills Search State
   const [search, setSearch] = useState("");
-  const skills = ["HTML", "CSS", "JavaScript", "React", "Node.js", "Express", "MongoDB", "Next.js", "TypeScript", "Git", "RESTful APIs", "Responsive Design", "UI/UX Design"];
+
+  // Live Name Input State
+  const [userName, setUserName] = useState("");
+
+  // Profile Toggle State
+  const [showDetails, setShowDetails] = useState(false);
+
+  // Contact Form State
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const [submitted, setSubmitted] = useState(false);
+
+  // Skills Data
+  const skills = [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "React",
+    "Node.js",
+    "Express",
+    "MongoDB",
+    "Next.js",
+    "TypeScript",
+    "Git",
+    "RESTful APIs",
+    "Responsive Design",
+    "UI/UX Design",
+  ];
+
+  // Team Data
+  const teamMembers = [
+    {
+      id: 1,
+      name: "Naweed Khan",
+      role: "Frontend Developer",
+      experience: 3,
+      city: "Mumbai",
+    },
+    {
+      id: 2,
+      name: "Rahul Sharma",
+      role: "Backend Developer",
+      experience: 3,
+      city: "Pune",
+    },
+    {
+      id: 3,
+      name: "Aman Verma",
+      role: "Full Stack Developer",
+      experience: 2,
+      city: "Bangalore",
+    },
+  ];
+
+  // About Data
+  const name = "Naweed Khan";
+  const role = "Front-End Developer";
+
+  // Skills Functions
   const filterSkills = (skill) =>
     skill.toLowerCase().includes(search.toLowerCase());
+
   const uppercaseSkill = (skill) => skill.toUpperCase();
 
   const filteredSkills = skills.filter(filterSkills);
 
-  const handleReset = () => setSearch("");
+  const handleResetSearch = () => {
+    setSearch("");
+  };
 
-  const name = "Naweed Khan";
-  const role = "Front-End Developer";
+  // Task 1: Counter Event Handlers
+  const handleIncrease = () => {
+    setCount((prevCount) => prevCount + 1);
+  };
 
-  const teamMembers = [
-  {
-    id: 1,
-    name: "Naweed Khan",
-    role: "Frontend Developer",
-    experience: 3,
-    city: "Mumbai",
-  },
-  {
-    id: 2,
-    name: "Rahul Sharma",
-    role: "Backend Developer",
-    experience: 3,
-    city: "Pune",
-  },
-  {
-    id: 3,
-    name: "Aman Verma",
-    role: "Full Stack Developer",
-    experience: 2,
-    city: "Bangalore",
-  },
-];
+  const handleDecrease = () => {
+    setCount((prevCount) => Math.max(0, prevCount - 1));
+  };
 
-  let experience = 1;
-  experience = experience + 1;
+  const handleCounterReset = () => {
+    setCount(0);
+  };
+
+  // Task 2: Live Name Input
+  const handleNameChange = (event) => {
+    setUserName(event.target.value);
+  };
+
+  // Task 3: Toggle Profile Details
+  const handleToggleDetails = () => {
+    setShowDetails((prev) => !prev);
+  };
+
+  // Task 4: Contact Form Input Handler
+  const handleFormChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+
+    setSubmitted(false);
+  };
+
+  // Task 4: Contact Form Submit Handler
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+
+    console.log("Form Submitted:", formData);
+
+    setSubmitted(true);
+
+    setFormData({
+      name: "",
+      email: "",
+      message: "",
+    });
+  };
+
+  // Task 5: Reusable Button Handlers
+  const handleSave = () => {
+    alert("Profile Saved Successfully!");
+  };
+
+  const handleDelete = () => {
+    alert("Profile Deleted!");
+  };
 
   return (
     <div className="App" id="home">
       <Navbar />
 
+      {/* Hero Section */}
       <main>
         <h1>Welcome to React Practice</h1>
-        <p>My first React practical project.</p>
-
-        <h2>Button clicked: {count} times</h2>
-
-        <button onClick={() => setCount(count + 1)}>
-          Increase Count
-        </button>
-
-        <button onClick={() => setCount(0)}>
-          Reset Count
-        </button>
+        <p>Learning React through practical projects.</p>
       </main>
 
-      
+      {/* Task 1: Counter */}
+      <section className="counter-section">
+        <h2>Counter Application</h2>
+
+        <h1>{count}</h1>
+
+        <div className="button-group">
+          <button onClick={handleIncrease}>
+            Increase
+          </button>
+
+          <button onClick={handleDecrease}>
+            Decrease
+          </button>
+
+          <button onClick={handleCounterReset}>
+            Reset
+          </button>
+        </div>
+      </section>
+
+      {/* About Section */}
       <section id="about" className="about">
         <h2>About Me</h2>
 
@@ -78,13 +189,13 @@ function App() {
 
         <div className="about-details">
           <p>
-            <strong>Name:</strong> {name}
+            <strong>Name:</strong>
+            {name}
           </p>
+
           <p>
-            <strong>Role:</strong> {role}
-          </p>
-          <p>
-            <strong>Experience:</strong> {experience} years
+            <strong>Role:</strong>
+            {role}
           </p>
         </div>
 
@@ -92,14 +203,17 @@ function App() {
 
         <ul className="skills-list">
           {skills.map((skill) => (
-            <li key={skill}>{uppercaseSkill(skill)}</li>
+            <li key={skill}>
+              {uppercaseSkill(skill)}
+            </li>
           ))}
         </ul>
       </section>
 
-
+      {/* Skills Explorer */}
       <section className="skills-explorer" id="skills">
-        <h1>Skills Explorer</h1>
+        <h2>Skills Explorer</h2>
+
         <p>Search the technologies I'm learning.</p>
 
         <input
@@ -109,11 +223,15 @@ function App() {
           onChange={(event) => setSearch(event.target.value)}
         />
 
-        <button onClick={handleReset}>Reset Search</button>
+        <button onClick={handleResetSearch}>
+          Reset Search
+        </button>
 
         <ul className="skills-list">
           {filteredSkills.map((skill) => (
-            <li key={skill}>{uppercaseSkill(skill)}</li>
+            <li key={skill}>
+              {uppercaseSkill(skill)}
+            </li>
           ))}
         </ul>
 
@@ -122,6 +240,39 @@ function App() {
         )}
       </section>
 
+      {/* Task 2: Live Name Input */}
+      <section className="name-section">
+        <h2>Live Name Preview</h2>
+
+        <input
+          type="text"
+          placeholder="Enter your name..."
+          value={userName}
+          onChange={handleNameChange}
+        />
+
+        <h3>Hello, {userName.trim() || "Guest"}!</h3>
+      </section>
+
+      {/* Task 3: Toggle Profile Details */}
+      <section className="profile-section">
+        <h2>My Profile</h2>
+
+        <button onClick={handleToggleDetails}>
+          {showDetails ? "Hide Details" : "Show Details"}
+        </button>
+
+        {showDetails && (
+          <div className="profile-details">
+            <p>Name: Naweed Khan</p>
+            <p>Role: Frontend Developer</p>
+            <p>Location: Mumbai</p>
+            <p>Skills: React, JavaScript, Next.js</p>
+          </div>
+        )}
+      </section>
+
+      {/* Team Section */}
       <section className="team-section">
         <h2>Our Team</h2>
 
@@ -133,11 +284,11 @@ function App() {
         ))}
       </section>
 
+      {/* Dashboard Cards */}
       <section className="cards-section">
         <h2>My Dashboard</h2>
 
         <div className="cards-container">
-
           <Card title="About Me">
             <p>Name: Naweed Khan</p>
             <p>Role: Frontend Developer</p>
@@ -158,6 +309,64 @@ function App() {
             <p>JobsyFi Campus</p>
           </Card>
         </div>
+      </section>
+
+      {/* Task 4: Contact Form */}
+      <section className="contact-section" id="contact">
+        <h2>Contact Me</h2>
+
+        <form onSubmit={handleFormSubmit}>
+          <input
+            type="text"
+            name="name"
+            placeholder="Enter your name"
+            value={formData.name}
+            onChange={handleFormChange}
+            required
+          />
+
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            value={formData.email}
+            onChange={handleFormChange}
+            required
+          />
+
+          <textarea
+            name="message"
+            placeholder="Enter your message"
+            value={formData.message}
+            onChange={handleFormChange}
+            required
+          />
+
+          <button type="submit">
+            Submit Message
+          </button>
+        </form>
+
+        {submitted && (
+          <p className="success-message">
+            Thank you! Your message was submitted successfully.
+          </p>
+        )}
+      </section>
+
+      {/* Task 5: Reusable Action Buttons */}
+      <section className="actions-section">
+        <h2>Profile Actions</h2>
+
+        <ActionButton
+          label="Save Profile"
+          onClick={handleSave}
+        />
+
+        <ActionButton
+          label="Delete Profile"
+          onClick={handleDelete}
+        />
       </section>
 
       <Footer />
