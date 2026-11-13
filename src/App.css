@@ -299,6 +299,60 @@ main button + button {
   font-size: 16px;
 }
 
+
+/* Cards Section */
+.cards-section {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.cards-section > h2 {
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.content-card {
+  flex: 1 1 280px;
+  max-width: 350px;
+  padding: 24px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(15, 23, 42, 0.05);
+  text-align: left;
+  transition: transform 0.2s ease;
+}
+
+.content-card:hover {
+  transform: translateY(-5px);
+}
+
+.content-card h2 {
+  margin-top: 0;
+  font-size: 21px;
+  color: #111827;
+}
+
+.content-card-body {
+  color: #64748b;
+  line-height: 1.8;
+}
+
+.content-card-body ul {
+  padding-left: 20px;
+}
+
+
 /* Mobile Responsive */
 @media (max-width: 650px) {
   .team-section {

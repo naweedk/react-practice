@@ -2,6 +2,7 @@
 import { useState } from "react";
 import "./App.css";
 import UserCard from "./UserCard";
+import Card from "./Card";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
@@ -122,15 +123,42 @@ function App() {
       </section>
 
       <section className="team-section">
-  <h2>Our Team</h2>
+        <h2>Our Team</h2>
 
-  {teamMembers.map((member) => (
-    <UserCard
-      key={member.id}
-      {...member}
-    />
-  ))}
-</section>
+        {teamMembers.map((member) => (
+          <UserCard
+            key={member.id}
+            {...member}
+          />
+        ))}
+      </section>
+
+      <section className="cards-section">
+        <h2>My Dashboard</h2>
+
+        <div className="cards-container">
+
+          <Card title="About Me">
+            <p>Name: Naweed Khan</p>
+            <p>Role: Frontend Developer</p>
+            <p>Location: Mumbai</p>
+          </Card>
+
+          <Card title="My Skills">
+            <ul>
+              <li>React</li>
+              <li>JavaScript</li>
+              <li>TypeScript</li>
+            </ul>
+          </Card>
+
+          <Card title="My Projects">
+            <p>VSME - Virtual Sales & Marketing</p>
+            <p>Katalyst - Kotak Life Management</p>
+            <p>JobsyFi Campus</p>
+          </Card>
+        </div>
+      </section>
 
       <Footer />
     </div>
