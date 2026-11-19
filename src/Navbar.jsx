@@ -1,16 +1,22 @@
 
 function Navbar() {
   return (
-    <nav className="navbar">
-      <h2>React Practice</h2>
+    <header className="navbar">
+      <a href="#home" className="navbar-brand">
+        React<span>Practice.</span>
+      </a>
 
-      <div className="nav-links">
+      <nav className="nav-links">
         <a href="#home">Home</a>
         <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a href="#services">Services</a>
-      </div>
-    </nav>
+        <a href="#skills">Skills</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact" className="nav-contact">
+          Contact
+        </a>
+      </nav>
+    </header>
   );
 }
 
