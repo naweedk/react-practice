@@ -22,7 +22,7 @@ function Footer() {
         </div>
       </div>
 
-      <p style={{ textAlign: "center", marginTop: "30px" }}>
+      <p className="footer-copyright">
         © {new Date().getFullYear()} Naweed Khan. All rights reserved.
       </p>
     </footer>
