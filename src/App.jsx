@@ -26,6 +26,7 @@ function App() {
     name: "",
     email: "",
     message: "",
+    department: "",
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -135,6 +136,7 @@ function App() {
       name: "",
       email: "",
       message: "",
+      department: "",
     });
   };
 
@@ -311,48 +313,95 @@ function App() {
         </div>
       </section>
 
-      {/* Task 4: Contact Form */}
-      <section className="contact-section" id="contact">
-        <h2>Contact Me</h2>
+      
+{/* Contact Form */}
+<section className="contact-section" id="contact">
+  <div className="contact-header">
+    <span className="contact-tag">GET IN TOUCH</span>
+    <h2>Contact Me</h2>
+    <p>
+      Have a project or opportunity in mind?
+      Feel free to send me a message.
+    </p>
+  </div>
 
-        <form onSubmit={handleFormSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Enter your name"
-            value={formData.name}
-            onChange={handleFormChange}
-            required
-          />
+  <form className="contact-form" onSubmit={handleFormSubmit}>
+    {/* Name */}
+    <div className="form-field">
+      <label htmlFor="contact-name">Full Name</label>
+      <input
+        id="contact-name"
+        type="text"
+        name="name"
+        placeholder="Enter your full name"
+        value={formData.name}
+        onChange={handleFormChange}
+        required
+      />
+    </div>
 
-          <input
-            type="email"
-            name="email"
-            placeholder="Enter your email"
-            value={formData.email}
-            onChange={handleFormChange}
-            required
-          />
+    {/* Email */}
+    <div className="form-field">
+      <label htmlFor="contact-email">Email Address</label>
+      <input
+        id="contact-email"
+        type="email"
+        name="email"
+        placeholder="Enter your email address"
+        value={formData.email}
+        onChange={handleFormChange}
+        required
+      />
+    </div>
 
-          <textarea
-            name="message"
-            placeholder="Enter your message"
-            value={formData.message}
-            onChange={handleFormChange}
-            required
-          />
+    {/* Department Select */}
+    <div className="form-field">
+      <label htmlFor="department">Department</label>
+      <select
+        id="department"
+        name="department"
+        value={formData.department}
+        onChange={handleFormChange}
+        required
+      >
+        <option value="" disabled>
+          Select a department
+        </option>
+        <option value="IT">IT</option>
+        <option value="HR">Human Resources</option>
+        <option value="Finance">Finance</option>
+        <option value="Marketing">Marketing</option>
+      </select>
+    </div>
 
-          <button type="submit">
-            Submit Message
-          </button>
-        </form>
+    {/* Message */}
+    <div className="form-field">
+      <label htmlFor="contact-message">Your Message</label>
+      <textarea
+        id="contact-message"
+        name="message"
+        placeholder="Write your message here..."
+        value={formData.message}
+        onChange={handleFormChange}
+        rows={5}
+        required
+      />
+    </div>
 
-        {submitted && (
-          <p className="success-message">
-            Thank you! Your message was submitted successfully.
-          </p>
-        )}
-      </section>
+    {/* Submit */}
+    <button type="submit" className="contact-submit">
+      Submit Message
+      <span aria-hidden="true"> →</span>
+    </button>
+  </form>
+
+  {submitted && (
+    <p className="success-message" role="status">
+      Your message has been submitted successfully!
+    </p>
+  )}
+</section>
+
 
       {/* Task 5: Reusable Action Buttons */}
       <section className="actions-section">
